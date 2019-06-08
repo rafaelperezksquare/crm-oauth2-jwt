@@ -1,5 +1,7 @@
 package com.stl.crm.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,7 +58,7 @@ public class CustomerController {
      */		
 	@RequestMapping(value="/customers/{customerId}", method = RequestMethod.GET)
 	public ResponseEntity<?> getCustomer(@PathVariable long customerId) {
-		Customer customer = customerService.getCustomer(customerId);
+		Optional<Customer> customer = customerService.getCustomer(customerId);
 		return new ResponseEntity<>(customer, HttpStatus.OK);
 	}	
 
@@ -97,7 +99,7 @@ public class CustomerController {
     @RequestMapping(value = "/customers/{customerId}", method = RequestMethod.DELETE)
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> deleteCustomer(@PathVariable long customerId) {
-    	Customer customer = customerService.getCustomer(customerId);
+    	Optional<Customer> customer = customerService.getCustomer(customerId);
     	customerService.deleteCustomer(customer);
     	return new ResponseEntity<>(HttpStatus.OK);
     }

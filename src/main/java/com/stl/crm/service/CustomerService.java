@@ -1,5 +1,7 @@
 package com.stl.crm.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,8 +40,8 @@ public class CustomerService {
 	 * @param customerId
 	 * @return
 	 */
-	public Customer getCustomer(long customerId) {
-		return customerRepository.findOne(customerId);
+	public Optional<Customer> getCustomer(long customerId) {
+		return customerRepository.findById(customerId);
 	}
 	
 	/**
@@ -66,8 +68,9 @@ public class CustomerService {
 	 * delete a customer
 	 * @param customer
 	 */
-	public void deleteCustomer(Customer customer) {
-		customerRepository.delete(customer);
+	public void deleteCustomer(Optional<Customer> customer) {
+		Customer customerToDelete = customer.get();
+		customerRepository.delete(customerToDelete);
 	}
 
 }

@@ -66,11 +66,12 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 
-		<!-- H2 Database -->
+		<!-- PostgreSQL Database -->
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>${h2database.version}</version>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.5</version>
 		</dependency>
 
 		<!-- Spring Security -->
